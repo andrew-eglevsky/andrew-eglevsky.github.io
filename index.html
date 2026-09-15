@@ -6,7 +6,7 @@
 <title>Andrew Eglevsky Portfolio</title>
 <meta name="description" content="Andrew Eglevsky — MBA & MS Business Analytics Candidate. Builder of the March Madness Prediction Model, an app that predicts NCAA Tournament matchups.">
 <meta property="og:title" content="Andrew Eglevsky Portfolio">
-<meta property="og:description" content="MBA & MS Business Analytics candidate — Fairfield University">
+<meta property="og:description" content="MBA & MS Business Analytics Candidate — Fairfield University">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://andreweglevsky.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -169,6 +169,32 @@
   }
   .project-actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;}
 
+  .more-projects{margin-top:28px;}
+  .more-projects-heading{
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:15px;color:var(--ink-soft);font-weight:600;
+    text-transform:uppercase;letter-spacing:.04em;margin-bottom:16px;
+  }
+  .mini-project-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:20px;
+  }
+  .mini-project{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:6px;padding:24px;
+  }
+  .mini-project h4{
+    font-family:'Fraunces',serif;font-weight:600;font-size:18px;
+    color:var(--ink);margin-bottom:8px;
+  }
+  .mini-project p{font-size:14px;color:var(--ink-soft);margin-bottom:16px;}
+  .mini-project-actions{margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;}
+  .mini-project-actions a{
+    font-size:13px;font-weight:600;color:var(--ink);text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  .mini-project-actions a:hover{border-color:var(--ember);color:var(--ember);}
+
   /* ---------- about ---------- */
   .about-body{font-size:17px;color:var(--ink-soft);}
   .about-body p + p{margin-top:18px;}
@@ -243,7 +269,7 @@
   <section id="work">
     <div class="shell">
       <div class="section-head">
-        <span class="section-kicker">Featured project</span>
+        <span class="section-kicker">Featured Project</span>
         <h2>March Madness Prediction Model</h2>
       </div>
 
@@ -252,8 +278,8 @@
           REPLACE THIS BLOCK: swap the .mm-mock illustration below for an
           actual screenshot of the live dashboard once you have one you like.
           Just replace the whole <div class="mm-mock">...</div> with:
-          <img src="dashboard-screenshot.png" alt="March Madness Matchup
-          Explorer showing a Duke vs. Kentucky win-probability comparison"
+          <img src="dashboard-screenshot.png" alt="March Madness Prediction Model
+          showing a Duke vs. Kentucky win-probability comparison"
           style="width:100%;display:block;">
         -->
         <div class="project-visual">
@@ -278,7 +304,7 @@
               <div class="fill-a"></div>
               <div class="fill-b"></div>
             </div>
-            <div class="mm-mock-caption">Illustrative matchup — opponent-adjusted efficiency model</div>
+            <div class="mm-mock-caption">Illustrative matchup</div>
           </div>
         </div>
 
@@ -299,6 +325,31 @@
             <!-- Replace these two href values once deployed -->
             <a href="https://andreweglevsky.shinyapps.io/march-madness-dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo</a>
             <a href="https://github.com/andrew-eglevsky/march-madness-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Source</a>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        MORE PROJECTS: one .mini-project block per project. Copy the whole
+        <div class="mini-project">...</div> block again for a third project
+        later; the grid handles any number automatically.
+      -->
+      <div class="more-projects">
+        <h3 class="more-projects-heading">More Projects</h3>
+        <div class="mini-project-grid">
+          <div class="mini-project">
+            <h4>MLB Daily Home Run Predictor</h4>
+            <p>Ranks every hitter in today's MLB starting lineups by how likely they are to hit a home run, combining season power, recent form, the opposing pitcher, bullpen strength, and ballpark conditions into a single daily ranking.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">pandas</span>
+              <span class="tag">Statcast</span>
+            </div>
+            <div class="mini-project-actions">
+              <a href="https://eglevsky-hr-predictor.streamlit.app" target="_blank" rel="noopener noreferrer">View Live Demo</a>
+              <a href="https://github.com/andrew-eglevsky/mlb-hr-predictor" target="_blank" rel="noopener noreferrer">View Source</a>
+            </div>
           </div>
         </div>
       </div>
@@ -371,12 +422,12 @@
   <section id="contact">
     <div class="shell">
       <div class="section-head" style="margin-bottom:0;">
-        <span class="section-kicker">Get in touch</span>
+        <span class="section-kicker">Get In Touch</span>
         <h2>Let's Talk</h2>
       </div>
       <ul class="contact-links">
         <li><a href="mailto:andreweglevsky@gmail.com">andreweglevsky@gmail.com</a></li>
-        <li><a href="https://linkedin.com/andreweglevsky">linkedin.com/andreweglevsky</a></li>
+        <li><a href="https://linkedin.com/in/andreweglevsky" target="_blank" rel="noopener noreferrer">linkedin.com/in/andreweglevsky</a></li>
         <li><a href="resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a></li>
       </ul>
     </div>
