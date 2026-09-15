@@ -3,8 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andrew Eglevsky — Business Analytics</title>
-<meta name="description" content="Andrew Eglevsky — MBA & MS Business Analytics candidate. Builder of the March Madness Matchup Explorer, an opponent-adjusted efficiency model for NCAA Tournament analysis.">
+<title>Andrew Eglevsky Portfolio</title>
+<meta name="description" content="Andrew Eglevsky — MBA & MS Business Analytics Candidate. Builder of the March Madness Prediction Model, an app that predicts NCAA Tournament matchups.">
+<meta property="og:title" content="Andrew Eglevsky Portfolio">
+<meta property="og:description" content="MBA & MS Business Analytics candidate — Fairfield University">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://andreweglevsky.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -128,7 +132,7 @@
     background:var(--navy);
     padding:48px 40px;
   }
-  .mm-mock{max-width:520px;margin:0 auto;}
+  .mm-mock{max-width:520px;margin:0 auto;--uk-blue:#0033A0;--duke-blue:#003087;}
   .mm-mock-teams{
     display:flex;justify-content:space-between;align-items:flex-end;
     padding-bottom:18px;
@@ -140,34 +144,24 @@
     font-family:'Fraunces',serif;font-weight:700;font-size:20px;
     margin:0 auto 10px;
   }
-  .mm-mock-team.a .mm-mock-badge{background:#fff;color:var(--navy);}
-  .mm-mock-team.b .mm-mock-badge{background:var(--ember);color:#fff;}
+  .mm-mock-team.a .mm-mock-badge{background:#fff;color:var(--duke-blue);}
+  .mm-mock-team.b .mm-mock-badge{background:var(--uk-blue);color:#fff;}
   .mm-mock-name{color:#fff;font-size:14px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;}
   .mm-mock-rank{color:#96A0BE;font-size:11px;margin-top:3px;}
   .mm-mock-prob{display:flex;justify-content:space-between;margin-bottom:8px;}
   .mm-mock-prob span{font-family:'Fraunces',serif;font-weight:700;font-size:26px;}
   .mm-mock-prob .a{color:#fff;}
-  .mm-mock-prob .b{color:var(--ember);}
+  .mm-mock-prob .b{color:var(--uk-blue);}
   .mm-mock-bar{height:10px;border-radius:5px;overflow:hidden;display:flex;background:#242C46;}
   .mm-mock-bar .fill-a{background:#fff;width:71%;}
-  .mm-mock-bar .fill-b{background:var(--ember);width:29%;}
+  .mm-mock-bar .fill-b{background:var(--uk-blue);width:29%;}
   .mm-mock-caption{
     text-align:center;color:#7C87A8;font-size:11.5px;margin-top:14px;
     font-family:'IBM Plex Sans',sans-serif;
   }
 
   .project-body{padding:40px;}
-  .project-body h3{font-size:24px;margin-bottom:14px;}
   .project-body .desc{color:var(--ink-soft);font-size:15.5px;}
-  .method-list{list-style:none;margin:26px 0 0;padding:0;}
-  .method-list li{
-    position:relative;padding-left:20px;margin-bottom:12px;
-    font-size:14.5px;color:var(--ink-soft);
-  }
-  .method-list li::before{
-    content:'';position:absolute;left:0;top:8px;
-    width:6px;height:6px;background:var(--ember);border-radius:50%;
-  }
   .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;}
   .tag{
     font-size:12.5px;font-weight:600;color:var(--ink-soft);
@@ -238,10 +232,10 @@
   <section class="hero">
     <div class="shell">
       <h1>Andrew Eglevsky</h1>
-      <p class="role">MBA &amp; MS Business Analytics candidate — Fairfield University, Dec. 2026</p>
+      <p class="role">MBA &amp; MS Business Analytics Candidate — Fairfield University, Dec. 2026</p>
       <div class="cta-row">
-        <a href="#work" class="btn btn-primary">View my work</a>
-        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Download resume</a>
+        <a href="#work" class="btn btn-primary">View My Work</a>
+        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Download Resume</a>
       </div>
     </div>
   </section>
@@ -250,7 +244,7 @@
     <div class="shell">
       <div class="section-head">
         <span class="section-kicker">Featured project</span>
-        <h2>March Madness Matchup Explorer</h2>
+        <h2>March Madness Prediction Model</h2>
       </div>
 
       <div class="project-card">
@@ -289,19 +283,10 @@
         </div>
 
         <div class="project-body">
-          <h3>An opponent-adjusted efficiency model for NCAA Tournament matchups</h3>
           <p class="desc">
-            Every team's rating accounts for the strength of the opponents they
-            actually played, not just their win-loss record — so a team that beat
-            weak opponents doesn't rank ahead of one that beat strong ones. Ratings
-            are computed using only games through Selection Sunday, so postseason
-            results can never leak into the numbers used to project the postseason.
+            An interactive app that predicts the winner of NCAA Tournament matchups
+            using each team's performance and the strength of the opponents they faced.
           </p>
-
-          <ul class="method-list">
-            <li>Opponent-adjusted efficiency margin, computed iteratively across a full season of Division I box scores</li>
-            <li>Backtested against real historical outcomes with a proper train/test split, scored on Brier score rather than raw accuracy alone</li>
-          </ul>
 
           <div class="tag-row">
             <span class="tag">R</span>
@@ -312,8 +297,8 @@
 
           <div class="project-actions">
             <!-- Replace these two href values once deployed -->
-            <a href="https://andreweglevsky.shinyapps.io/march-madness-dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View live demo</a>
-            <a href="https://github.com/andrew-eglevsky/march-madness-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View source</a>
+            <a href="https://andreweglevsky.shinyapps.io/march-madness-dashboard/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Live Demo</a>
+            <a href="https://github.com/andrew-eglevsky/march-madness-dashboard" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Source</a>
           </div>
         </div>
       </div>
@@ -329,7 +314,8 @@
       <div class="about-body measure">
         <p>
           I'm completing a dual <strong>MBA and MS in Business Analytics</strong> at
-          Fairfield University this December, after earning my BS in Computer Science.
+          Fairfield University this December, after earning my <strong>BS in Computer
+          Science</strong>, with minors in Math and Business Analytics.
         </p>
         <p>
           Most recently, I worked as a <strong>Business Intelligence Analyst Intern at
@@ -371,7 +357,7 @@
           </div>
         </div>
         <div class="skill-group">
-          <h4>AI-assisted workflow</h4>
+          <h4>AI-Assisted Workflow</h4>
           <div class="skill-tags">
             <span class="tag">Microsoft Copilot</span>
             <span class="tag">Claude</span>
@@ -384,19 +370,15 @@
 
   <section id="contact">
     <div class="shell">
-      <div class="contact-row">
-        <div>
-          <div class="section-head" style="margin-bottom:0;">
-            <span class="section-kicker">Get in touch</span>
-            <h2>Let's talk</h2>
-          </div>
-          <ul class="contact-links">
-            <li><a href="mailto:andreweglevsky@gmail.com">andreweglevsky@gmail.com</a></li>
-            <li><a href="https://linkedin.com/andreweglevsky">linkedin.com/andreweglevsky</a></li>
-          </ul>
-        </div>
-        <a href="resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download resume</a>
+      <div class="section-head" style="margin-bottom:0;">
+        <span class="section-kicker">Get in touch</span>
+        <h2>Let's Talk</h2>
       </div>
+      <ul class="contact-links">
+        <li><a href="mailto:andreweglevsky@gmail.com">andreweglevsky@gmail.com</a></li>
+        <li><a href="https://linkedin.com/andreweglevsky">linkedin.com/andreweglevsky</a></li>
+        <li><a href="resume.pdf" target="_blank" rel="noopener noreferrer">Download Resume</a></li>
+      </ul>
     </div>
   </section>
 
