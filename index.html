@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Eglevsky — Business Analytics</title>
+<meta name="description" content="Andrew Eglevsky — MBA & MS Business Analytics candidate. Builder of the March Madness Matchup Explorer, an opponent-adjusted efficiency model for NCAA Tournament analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F5F7;
+    --surface:#FFFFFF;
+    --ink:#131A2E;
+    --ink-soft:#4B5468;
+    --navy:#0F1526;
+    --ember:#C1541C;
+    --ember-soft:#F0E1D6;
+    --line:#DADEE6;
+    --line-soft:#E7E9EE;
+    --radius:3px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.1;
+    margin:0;
+  }
+  a{color:var(--ember);}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--ember);
+    outline-offset:3px;
+  }
+  p{margin:0;}
+  .measure{max-width:640px;}
+
+  /* ---------- layout shell ---------- */
+  .shell{max-width:920px;margin:0 auto;padding:0 32px;}
+  section{padding:96px 0;}
+  section + section{border-top:1px solid var(--line-soft);}
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(244,245,247,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-row{
+    max-width:920px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;font-size:18px;color:var(--ink);
+    text-decoration:none;letter-spacing:-0.01em;
+  }
+  .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    color:var(--ink-soft);text-decoration:none;font-size:14.5px;font-weight:500;
+  }
+  .nav-links a:hover{color:var(--ember);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:100px 0 88px;}
+  .hero h1{
+    font-size:clamp(40px, 6vw, 64px);
+    letter-spacing:-0.01em;
+  }
+  .hero .role{
+    margin-top:14px;
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:17px;color:var(--ink-soft);font-weight:500;
+  }
+  .hero .lede{
+    margin-top:28px;
+    font-family:'Fraunces', Georgia, serif;
+    font-size:clamp(22px, 2.6vw, 28px);
+    font-weight:500;
+    line-height:1.35;
+    max-width:620px;
+    color:var(--ink);
+  }
+  .cta-row{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;border-radius:var(--radius);
+    font-size:14.5px;font-weight:600;text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .12s ease, background .12s ease;
+  }
+  .btn-primary{background:var(--navy);color:#fff;}
+  .btn-primary:hover{background:#1A2440;}
+  .btn-secondary{background:transparent;color:var(--ink);border-color:var(--line);}
+  .btn-secondary:hover{border-color:var(--ink);}
+
+  /* ---------- section headings ---------- */
+  .section-head{margin-bottom:44px;}
+  .section-head h2{font-size:clamp(28px,3.4vw,36px);}
+  .section-head .section-kicker{
+    display:block;font-family:'IBM Plex Sans',sans-serif;
+    font-size:13.5px;color:var(--ember);font-weight:600;
+    margin-bottom:10px;
+  }
+
+  /* ---------- featured project ---------- */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .project-visual{
+    background:var(--navy);
+    padding:48px 40px;
+  }
+  .mm-mock{max-width:520px;margin:0 auto;}
+  .mm-mock-teams{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    padding-bottom:18px;
+  }
+  .mm-mock-team{text-align:center;width:46%;}
+  .mm-mock-badge{
+    width:52px;height:52px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+    margin:0 auto 10px;
+  }
+  .mm-mock-team.a .mm-mock-badge{background:#fff;color:var(--navy);}
+  .mm-mock-team.b .mm-mock-badge{background:var(--ember);color:#fff;}
+  .mm-mock-name{color:#fff;font-size:14px;font-weight:600;font-family:'IBM Plex Sans',sans-serif;}
+  .mm-mock-rank{color:#96A0BE;font-size:11px;margin-top:3px;}
+  .mm-mock-prob{display:flex;justify-content:space-between;margin-bottom:8px;}
+  .mm-mock-prob span{font-family:'Fraunces',serif;font-weight:700;font-size:26px;}
+  .mm-mock-prob .a{color:#fff;}
+  .mm-mock-prob .b{color:var(--ember);}
+  .mm-mock-bar{height:10px;border-radius:5px;overflow:hidden;display:flex;background:#242C46;}
+  .mm-mock-bar .fill-a{background:#fff;width:71%;}
+  .mm-mock-bar .fill-b{background:var(--ember);width:29%;}
+  .mm-mock-caption{
+    text-align:center;color:#7C87A8;font-size:11.5px;margin-top:14px;
+    font-family:'IBM Plex Sans',sans-serif;
+  }
+
+  .project-body{padding:40px;}
+  .project-body h3{font-size:24px;margin-bottom:14px;}
+  .project-body .desc{color:var(--ink-soft);font-size:15.5px;}
+  .method-list{list-style:none;margin:26px 0 0;padding:0;}
+  .method-list li{
+    position:relative;padding-left:20px;margin-bottom:12px;
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  .method-list li::before{
+    content:'';position:absolute;left:0;top:8px;
+    width:6px;height:6px;background:var(--ember);border-radius:50%;
+  }
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px;}
+  .tag{
+    font-size:12.5px;font-weight:600;color:var(--ink-soft);
+    border:1px solid var(--line);padding:5px 11px;border-radius:20px;
+  }
+  .project-actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;}
+
+  /* ---------- about ---------- */
+  .about-body{font-size:17px;color:var(--ink-soft);}
+  .about-body p + p{margin-top:18px;}
+  .about-body strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  }
+  .skill-group h4{
+    font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:600;
+    color:var(--ember);margin-bottom:14px;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tags .tag{background:var(--surface);}
+
+  /* ---------- contact ---------- */
+  .contact-row{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:32px;
+  }
+  .contact-links{list-style:none;margin:20px 0 0;padding:0;}
+  .contact-links li{margin-bottom:10px;}
+  .contact-links a{
+    color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:500;
+    border-bottom:1px solid var(--line);
+  }
+  .contact-links a:hover{border-color:var(--ember);color:var(--ember);}
+
+  footer{padding:32px 0;text-align:center;}
+  footer p{font-size:12.5px;color:var(--ink-soft);}
+
+  @media (max-width:720px){
+    .shell{padding:0 20px;}
+    section{padding:64px 0;}
+    .nav-row{padding:16px 20px;}
+    .nav-links{gap:18px;}
+    .project-body{padding:28px;}
+    .project-visual{padding:32px 20px;}
+    .skills-grid{grid-template-columns:1fr;gap:28px;}
+    .contact-row{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <a href="#top" class="wordmark">Andrew Eglevsky</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="shell">
+      <h1>Andrew Eglevsky</h1>
+      <p class="role">MBA &amp; MS Business Analytics candidate — Fairfield University, Dec. 2026</p>
+      <div class="cta-row">
+        <a href="#work" class="btn btn-primary">View my work</a>
+        <a href="resume.pdf" class="btn btn-secondary">Download resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="shell">
+      <div class="section-head">
+        <span class="section-kicker">Featured project</span>
+        <h2>March Madness Matchup Explorer</h2>
+      </div>
+
+      <div class="project-card">
+        <!--
+          REPLACE THIS BLOCK: swap the .mm-mock illustration below for an
+          actual screenshot of the live dashboard once you have one you like.
+          Just replace the whole <div class="mm-mock">...</div> with:
+          <img src="dashboard-screenshot.png" alt="March Madness Matchup
+          Explorer showing a Duke vs. Kentucky win-probability comparison"
+          style="width:100%;display:block;">
+        -->
+        <div class="project-visual">
+          <div class="mm-mock">
+            <div class="mm-mock-teams">
+              <div class="mm-mock-team a">
+                <div class="mm-mock-badge">D</div>
+                <div class="mm-mock-name">Duke</div>
+                <div class="mm-mock-rank">Model Rank #1</div>
+              </div>
+              <div class="mm-mock-team b">
+                <div class="mm-mock-badge">K</div>
+                <div class="mm-mock-name">Kentucky</div>
+                <div class="mm-mock-rank">Model Rank #25</div>
+              </div>
+            </div>
+            <div class="mm-mock-prob">
+              <span class="a">71%</span>
+              <span class="b">29%</span>
+            </div>
+            <div class="mm-mock-bar">
+              <div class="fill-a"></div>
+              <div class="fill-b"></div>
+            </div>
+            <div class="mm-mock-caption">Illustrative matchup — opponent-adjusted efficiency model</div>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <h3>An opponent-adjusted efficiency model for NCAA Tournament matchups</h3>
+          <p class="desc">
+            Built the same way tools like KenPom are: every team's rating is adjusted for
+            who they actually played, not just their record. Ratings are computed using
+            only games through Selection Sunday, so postseason results can never leak
+            into the numbers used to project the postseason.
+          </p>
+
+          <ul class="method-list">
+            <li>Opponent-adjusted efficiency margin, computed iteratively across a full season of Division I box scores</li>
+            <li>Backtested against real historical outcomes with a proper train/test split, scored on Brier score rather than raw accuracy alone</li>
+          </ul>
+
+          <div class="tag-row">
+            <span class="tag">R</span>
+            <span class="tag">Shiny</span>
+            <span class="tag">dplyr</span>
+            <span class="tag">hoopR</span>
+          </div>
+
+          <div class="project-actions">
+            <!-- Replace these two href values once deployed -->
+            <a href="https://andreweglevsky.shinyapps.io/march-madness-dashboard/" class="btn btn-primary">View live demo</a>
+            <a href="https://github.com/andrew-eglevsky/march-madness-dashboard" class="btn btn-secondary">View source</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="shell">
+      <div class="section-head">
+        <span class="section-kicker">About</span>
+        <h2>Background</h2>
+      </div>
+      <div class="about-body measure">
+        <p>
+          I'm completing a dual <strong>MBA and MS in Business Analytics</strong> at
+          Fairfield University this December, after earning my BS in Computer Science.
+        </p>
+        <p>
+          Most recently, I worked as a <strong>Business Intelligence Analyst Intern at
+          The Hartford</strong>, where I built dashboards, forecasting tools, and
+          analytical models that helped turn complex data into practical business
+          decisions.
+        </p>
+        <p>
+          What I enjoy most is figuring out the story behind the data — taking an
+          ambiguous problem, working through the numbers, and turning the result
+          into something people can actually use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="shell">
+      <div class="section-head" style="margin-bottom:20px;">
+        <h2>Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">R</span>
+            <span class="tag">C++</span>
+            <span class="tag">Java</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Analytics &amp; BI</h4>
+          <div class="skill-tags">
+            <span class="tag">Tableau</span>
+            <span class="tag">Snowflake</span>
+            <span class="tag">Google Analytics</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>AI-assisted workflow</h4>
+          <div class="skill-tags">
+            <span class="tag">Microsoft Copilot</span>
+            <span class="tag">Claude</span>
+            <span class="tag">Snowflake Cortex</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="shell">
+      <div class="contact-row">
+        <div>
+          <div class="section-head" style="margin-bottom:0;">
+            <span class="section-kicker">Get in touch</span>
+            <h2>Let's talk</h2>
+          </div>
+          <ul class="contact-links">
+            <li><a href="mailto:andreweglevsky@gmail.com">andreweglevsky@gmail.com</a></li>
+            <li><a href="https://linkedin.com/andreweglevsky">linkedin.com/andreweglevsky</a></li>
+          </ul>
+        </div>
+        <a href="resume.pdf" class="btn btn-primary">Download resume</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Andrew Eglevsky</p>
+</footer>
+
+</body>
+</html>
